@@ -4,8 +4,11 @@ const app = express()
 const port = 3000
 
 app.use(bodyParser.urlencoded({ extended: false }))
-app.get('/', (req, res) => res.sendFile(__dirname + '/index.html'))
-
+app.get('/', (req, res) => {
+    const userIp = req.ip;
+    console.log('User IP:', userIp);
+    res.sendFile(__dirname + '/index.html');
+  });
 app.post('/login', (req, res) => {
   const username = req.body.username;
   const password = req.body.password;
